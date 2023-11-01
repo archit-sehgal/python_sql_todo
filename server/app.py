@@ -27,9 +27,9 @@ def todo():
         cur.execute("INSERT INTO todo (task) VALUES (%s)", (todo,))
         con.commit()
 
-        cur.execute("SELECT task FROM todo")
+        cur.execute("SELECT id, task FROM todo")
         todos = cur.fetchall()
-        taskList = [task[0] for task in todos]
+        taskList = [{"id": task[0], "task": task[1]} for task in todos]
 
         return jsonify(taskList)
     except Exception as e:
@@ -47,7 +47,21 @@ def deletetodo():
         return jsonify(taskList)
     except Exception as e:
         return jsonify({"error": str(e)})
-        
+    
+@app.route("/delete/todo/<int:todo_id>", methods=["DELETE"])
+def delete_single_todo(todo_id):
+    try:
+        cur.execute("DELETE FROM todo WHERE id = %s", (todo_id,))
+        con.commit()
+
+        cur.execute("SELECT id, task FROM todo")
+        todos = cur.fetchall()
+        taskList = [{"id": task[0], "task": task[1]} for task in todos]
+
+        return jsonify(taskList)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
