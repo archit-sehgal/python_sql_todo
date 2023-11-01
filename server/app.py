@@ -17,7 +17,6 @@ con.commit()
 def home():
     return "Hey there!"
 
-@app.route("/todo",methods=["POST"])
 @app.route("/todo", methods=["POST"])
 def todo():
     try:
@@ -35,6 +34,20 @@ def todo():
         return jsonify(taskList)
     except Exception as e:
         return jsonify({"error": str(e)})
+
+@app.route("/delete",methods=["POST"])
+def deletetodo():
+    try:
+        cur.execute("truncate table todo")
+        con.commit()
+        cur.execute("SELECT task FROM todo")
+        todos = cur.fetchall()
+        taskList = [task[0] for task in todos]
+
+        return jsonify(taskList)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+        
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)

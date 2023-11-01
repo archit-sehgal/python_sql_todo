@@ -18,4 +18,5 @@ html,body{
   align-items: center;
   justify-content: center;
   gap:10px;
+  padding-top: 50px;
 }
