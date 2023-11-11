@@ -41,7 +41,7 @@ function App() {
       <label>Enter To-do task:</label>
       <TextField
         id="outlined-basic"
-        label="Outlined"
+        label="Enter your todo here"
         variant="outlined"
         onChange={(e) => {
           setTodo(e.target.value);
@@ -51,7 +51,7 @@ function App() {
         Create ToDo
       </Button>
       <Button variant="contained" onClick={deletetodos}>
-        Delet Todos
+        Delete Todos
       </Button>
       <div className="output">
         {Array.isArray(output) &&
@@ -62,7 +62,7 @@ function App() {
                 severity="info"
                 style={{ margin: "10px" }}
               >
-                ID: {t.id}, Task: {t.task}
+                {t.task}
                 <IconButton
                   aria-label="delete"
                   onClick={() => deleteSingleTodo(t.id)}
