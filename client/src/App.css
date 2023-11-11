@@ -16,7 +16,10 @@ html,body{
 .main{
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap:10px;
+  min-height: 100vh;
   padding-top: 50px;
+  background: url("https://img.freepik.com/free-vector/white-background-with-wavy-lines-copy-space_23-2148822145.jpg?w=1060&t=st=1699705196~exp=1699705796~hmac=a7e184a5ff55b472b287d1d97cde6faec6de534c075c0e0aa39ffa5f7fb8919f");
+  background-size: cover;  
 }
